@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="an">
+<head>
+  <meta charset="utf-8"> 
+  <title>原型链与对象修改</title>
+</head>
+</html>
+
+<script>
+  var obj = {
+    proto: {
+      a:1,
+      b:2
+    }
+  }
+  function F () {}
+  F.prototype = obj.proto;
+  var f = new F();
+  console.log(f);
+  obj.proto.c = 3;
+  // 此处修改proto的值不会影响F函数原型链上的obj
+  obj.proto = {
+    a:-1,
+    b:-2
+  }
+  console.log(f)
+  console.log(obj)
+
+  
+</script>

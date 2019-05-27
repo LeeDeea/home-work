@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="Keywords" content="粒子效果">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    body {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #canvas {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      z-index: -1;
+      background: #ffffff;
+    }
+
+    span {
+      display: inline-block;
+      margin: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="number"></div>
+  <canvas id="canvas"></canvas>
+</body>
+
+</html>
+<script type="text/javascript">
+  /*需求分析：
+  1.首先创建画布 canvas
+      1.浏览器等宽等高
+  2.创建粒子
+      1.画圆的方法
+          1.条件：画笔
+          2.圆
+          3.色彩
+      2.圆的属性
+          1.大小一样
+          2.数量
+          2.初始化粒子位置
+  3.粒子运动
+      1.在当前圆心基础上每隔一定时间 随机增加或者减少数值绘制圆 并删除之前绘画的圆
+      2.边界问题：遇到边界则将坐标增加或减少值 取反。
+  4.粒子连线
+      1.勾股定理 粒子连线
+  5.鼠标移入时改变线段颜色
+  */
+  //声明全局变量
+  let oCanvas = document.querySelector('#canvas');
+  let cxt = oCanvas.getContext('2d');//创建画笔
+  let Ww = window.innerWidth;
+  let Wh = window.innerHeight;
+  let Num = 300;
+  let Data = [];//圆心随机坐标
+  //1.创建与屏幕等宽等高画布
+  function autoWH() {//初始化操作
+    oCanvas.width = Ww;
+    oCanvas.height = Wh;
+    //生成200个随机的圆心坐标与圆
+    for (let i = 0; i < Num; i++) {
+      Data[i] = {
+        x: Math.random() * Ww,
+        y: Math.random() * Wh,
+        cx: (Math.random() * 0.6 - 0.3) * 0.5,
+        cy: (Math.random() * 0.6 - 0.3) * 0.5
+      }
+      createParticle(Data[i].x, Data[i].y);
+    }
+  };
+  autoWH();
+  //2.创建粒子
+  function createParticle(x, y) {
+    cxt.save();//保存路径
+    cxt.fillStyle = 'rgba(255, 255, 255, 0)';//填充样式
+    cxt.beginPath();//开始路径
+    cxt.arc(x, y, 1.2, 0, Math.PI * 2, false);//画圆方法
+    cxt.closePath();//结束路径
+    cxt.fill();//填充
+    cxt.restore();//释放路径
+  }
+  //3.粒子运动
+  function draw() {
+    cxt.clearRect(0, 0, Ww, Wh);//构造之前先清除
+    for (let i = 0; i < Num; i++) {
+      Data[i].x += Data[i].cx;
+      Data[i].y += Data[i].cy;
+      createParticle(Data[i].x, Data[i].y);
+      if (Data[i].x < 0 || Data[i].x > Ww) {
+        Data[i].cx = -Data[i].cx;
+      } else if (Data[i].y < 0 || Data[i].y > Wh) {
+        Data[i].cy = -Data[i].cy;
+      }
+      for (let j = i + 1; j < Num; j++) {
+        if (Math.pow(Data[i].x - Data[j].x, 2) + Math.pow(Data[i].y - Data[j].y, 2) < 40 * 40) {
+          drawLine(Data[i].x, Data[i].y, Data[j].x, Data[j].y);
+        }
+      }
+    }
+  }
+  setInterval(draw, 1000 / 40);
+  //4.粒子连线
+  function drawLine(x1, y1, x2, y2) {
+    let Cxt = oCanvas.getContext('2d');
+    let color = Cxt.createLinearGradient(x1, y1, x2, y2);
+    color.addColorStop(0, '#CCC');
+    color.addColorStop(0.5, 'white');
+    color.addColorStop(1, '#F2F2F2');
+    Cxt.save();
+    Cxt.strokeStyle = color;
+    Cxt.beginPath();
+    Cxt.moveTo(x1, y1);
+    Cxt.lineTo(x2, y2);
+    Cxt.closePath();
+    Cxt.stroke();
+    Cxt.restore();
+  }
+
+
+
+  /*
+    var arr = [];
+    var number = document.getElementById('number')
+    for (let i = 0; i < 10; i++) {
+      arr.push(Math.floor(Math.random() * (2 - 0) + 0));
+    }
+    for (let i = 0; i < 10; i++) {
+      var para = document.createElement("span");
+      var node = document.createTextNode(Math.floor(Math.random() * (2 - 0) + 0));
+      para.appendChild(node);
+      number.appendChild(para)
+    }
+    var as = document.getElementsByTagName('span')
+    for (let i = 0; i < 10; i++) {
+      as[i].addEventListener('click', function () {
+        // console.log(typeof as[i].innerHTML)
+        if (i == 0) {
+          if (as[i].innerHTML == '1') {
+            as[i].innerHTML = '0';
+            as[as.length - 1].innerHTML = as[i + 1].innerHTML = 1;
+          } else {
+            as[i].innerHTML = '1';
+            as[as.length - 1].innerHTML = as[i + 1].innerHTML = 0;
+          }
+        } else if (i == as.length - 1) {
+          if (as[i].innerHTML == '1') {
+            as[i].innerHTML = '0';
+            as[i - 1].innerHTML = as[0].innerHTML = 1;
+          } else {
+            as[i].innerHTML = '1';
+            as[i - 1].innerHTML = as[0].innerHTML = 0;
+          }
+        } else {
+          if (as[i].innerHTML == '1') {
+            as[i].innerHTML = '0';
+            as[i - 1].innerHTML = as[i + 1].innerHTML = 1;
+            // console.log(1)
+          } else {
+            as[i].innerHTML = '1';
+            as[i - 1].innerHTML = as[i + 1].innerHTML = 0;
+            // console.log(0)
+          }
+        }
+      })
+    }
+  */
+  // console.log(as)
+
+
+
+</script>

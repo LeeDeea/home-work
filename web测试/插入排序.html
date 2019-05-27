@@ -1,0 +1,24 @@
+<script>
+	//插入排序算法 复杂度n^2
+function insertionSort(array) {
+　　console.time('插入排序耗时：');
+　　for (var i = 1; i < array.length; i++) {
+		// 假设key最小 数组第一项开始
+　　　　var key = array[i];
+		// j为数组     数组第0项开始
+　　　　var j = i - 1;
+		// 如果前一项始终 > 后一项
+　　　　while ( array[j] > key) {
+		//	前后调换 并减少索引 再次比较 一直到 前一项 < 后一项
+　　　　　　array[j + 1] = array[j];
+　　　　　    j--;
+　　　　}
+		// 本次while循环结束后 将key值存放回数组
+　　　　array[j + 1] = key;
+　　}
+　　console.timeEnd('插入排序耗时：');
+　　return array;
+}
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(insertionSort(arr));
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport">
+    <title>ehcarts测试</title>
+    <style>
+        div {
+            display: inline-block;
+            font-weight: 700px;
+        }
+    </style>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script src="./echarts.js"></script>
+<script>
+    let promise = new Promise((resolve, reject) => {
+        let xxx = echarts.init(document.getElementById('main'))
+        var option = {
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [15, 20, 36, 10, 10, 20]
+        }]
+    };
+        // let option = {
+        //     legend: {},
+        //     tooltip: {},
+        //     dataset: {
+        //         // 这里指定了维度名的顺序，从而可以利用默认的维度到坐标轴的映射。
+        //         // 如果不指定 dimensions，也可以通过指定 series.encode 完成映射，参见后文。
+        //         dimensions: ['product', '2015', '2016', '2017'],
+        //         source: [
+        //             {product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
+        //             {product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
+        //             {product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
+        //             {product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+        //         ]
+        //     },
+        //     xAxis: {type: 'category'},
+        //     yAxis: {},
+        //     series: [
+        //         {type: 'bar'},
+        //         {type: 'bar'},
+        //         {type: 'bar'}
+        //     ]
+        // }
+        xxx.on('click', function (params) {
+    if (params.componentType === 'markPoint') {
+        // 点击到了 markPoint 上
+        
+        if (params.seriesIndex === 5) {
+            // 点击到了 index 为 5 的 series 的 markPoint 上。
+        }
+    }
+    else if (params.componentType === 'series') {
+        if (params.seriesType === 'graph') {
+            if (params.dataType === 'edge') {
+                // 点击到了 graph 的 edge（边）上。
+            }
+            else {
+                // 点击到了 graph 的 node（节点）上。
+            }
+        }
+    }
+});
+
+        xxx.setOption(option);
+        xxx.on('finished',() => {
+            resolve();
+        })
+    });
+    promise.then(() => {
+        console.log(1);
+    });    
+
+
+
+        // var snapshotImage = new Image();
+        // document.body.append(snapshotImage);
+        // x.on('finished', function () {
+        //     snapshotImage.src = x.getDataURL();
+        // });
+
+    //     backgroundColor: '#2c343c',
+    // visualMap: {
+    //     show: false,
+    //     min: 80,
+    //     max: 600,
+    //     inRange: {
+    //         colorLightness: [0, 1]
+    //     }
+    // },
+    // series : [
+    //     {
+    //         name: '访问来源',
+    //         type: 'pie',
+    //         radius: '55%',
+    //         data:[
+    //             {value:235, name:'视频广告'},
+    //             {value:274, name:'联盟广告'},
+    //             {value:310, name:'邮件营销'},
+    //             {value:335, name:'直接访问'},
+    //             {value:400, name:'搜索引擎'}
+    //         ],
+    //         roseType: 'angle',
+    //         label: {
+    //             normal: {
+    //                 textStyle: {
+    //                     color: 'rgba(255, 255, 255, 0.3)'
+    //                 }
+    //             }
+    //         },
+    //         labelLine: {
+    //             normal: {
+    //                 lineStyle: {
+    //                     color: 'rgba(255, 255, 255, 0.3)'
+    //                 }
+    //             }
+    //         },
+    //         itemStyle: {
+    //             normal: {
+    //                 color: '#c23531',
+    //                 shadowBlur: 200,
+    //                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //             }
+    //         }
+    //     }
+    // ]
+    // });
+    // var chart = echarts.init(dom, 'light');
+</script>
+</head>
+</html>

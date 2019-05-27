@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="an">
+<head>
+  <meta charset="utf-8"> 
+  <title></title>
+  <style>
+    .faters-father {
+      width: 1000px;
+      height:1000px;
+      background: pink;
+    }
+    .father {
+      width: 500px;
+      height: 500px;
+      background:red;
+    }
+    .son {
+      display: inline;
+      width: 100%;
+      height: 50%;
+      background:blue;
+    }
+    .son-in-son-top {
+      width: 100%;
+      height: 50%;
+      background:rgb(59, 67, 23);
+    }
+    .son-in-son {
+      width: 100%;
+      height: 50%;
+      background:rgb(123, 102, 210);
+    }
+  </style>
+</head>
+</html>
+<div class="faters-father">
+  <div class="father">
+      <div class="son">
+        <!-- 此处设置son为inline显示 ，则 son子元素的高度则按照father进行50%； -->
+        <!-- 所以，子元素的高度百分比与"上级","相邻","块儿元素"的高度有关。 -->
+        <div class="son-in-son-top"></div>
+        <div class="son-in-son">
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<script>
+
+console.log(+0 == -0); // true
+
+</script>

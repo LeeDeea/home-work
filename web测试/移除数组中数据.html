@@ -1,0 +1,15 @@
+
+<script>
+
+function remove(arr, item) {
+    var newArr = arr;
+    for(var i = 0;i<arr.length;i++){
+        if(arr[i]==item){
+            newArr.splice(item,1)
+        }
+    }
+    return newArr;
+}
+var ax = [1,2,3,4,5];
+remove(ax,3)
+</script>
