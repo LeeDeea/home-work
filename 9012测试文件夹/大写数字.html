@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>将数字变为大写</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	input {
+		width: 500px;
+		height: 40px;
+	}
+	button {
+		width: 80px;
+		height: 40px;
+		margin: 10px 5px 1px;
+	}
+	button:hover {
+		border: 4px solid #000;
+		outline: 9999px solid rgba(0,0,0,0.3);
+		z-index:22;
+	}
+	#numval,#numBigVal {
+		z-index: 1;
+	}
+	#numVal:hover {
+		border: 4px solid #000;
+		outline: 9999px solid rgba(0,0,0,0.3);
+		z-index:22;
+	}
+	#numBigVal:hover {
+		border: 4px solid #000;
+		outline: 9999px solid rgba(0,0,0,0.3);
+		z-index:22;
+	}
+	
+</style>
+<body>
+	<div>
+		<input id="numVal" type="text">
+	</div>
+	<div>
+		<input id="numBigVal" type="text">
+	</div>
+
+	<button onclick="replace()">转换</button>
+	
+</body>
+<script>
+	function clearHeaderZero(num){
+		num = num.replace(/^[0]+/g,'');
+		return num;
+	}
+	function clearfootZero(num){
+		num = num ? num.replace(/零$/g,'') : num
+		return num;
+	}
+	function replaceGigNum(num){
+		num = num.replace(/[1]/g,'一');
+		num = num.replace(/[2]/g,'二');
+		num = num.replace(/[3]/g,'三');
+		num = num.replace(/[4]/g,'四');
+		num = num.replace(/[5]/g,'五');
+		num = num.replace(/[6]/g,'六');
+		num = num.replace(/[7]/g,'七');
+		num = num.replace(/[8]/g,'八');
+		num = num.replace(/[9]/g,'九');
+		num = num.replace(/[0]/g,'零');
+		return num;
+	}
+	function addCompany(arr,index){
+		if(index == 0){
+			arr[index] = arr[index] == 0?'':arr[index];
+			return arr;
+		}else{
+			if(index == 1){
+	        	arr[index]+='十';
+	        }
+	        if(index == 2){
+	        	arr[index]+='百';
+	        }
+	        if(index == 3){
+	        	arr[index]+='千';
+	        }
+	        if(index == 4){
+	        	arr[index]+='万';
+	        }
+	        if(index == 5){
+	        	arr[index]+='十';
+	        }
+	        if(index == 6){
+	        	arr[index]+='百';
+	        }
+	        if(index == 7){
+	        	arr[index]+='千';
+	        }
+	        if(index == 8){
+	        	arr[index]+='亿';
+	        }
+	        if(index == 9){
+	        	arr[index]+='十';
+	        }
+	        if(index == 10){
+	        	arr[index]+='百';
+	        }
+	        if(index == 11){
+	        	arr[index]+='千';
+	        }
+        }	
+        return arr;
+	}
+	function replace() {
+		num = document.getElementById('numVal');
+		num = num.value;
+		if(num>9000000000000){
+			alert(num+'数值过大');
+		}else{
+			num = clearHeaderZero(num);
+			num = num.toString().split('').reverse(); //12003
+			for(let i = 0; i<num.length; i++){
+				num = addCompany(num,i)
+			}
+			num = num .reverse();
+			num = num.join().replace(/\,/g,'');
+			num = replaceGigNum(num);
+			let index = 3;
+			while(index > 0){
+				num = num.replace(/零零/g,'零');
+				num = num.replace(/零十/g,'零');
+				num = num.replace(/零百/g,'零');
+				num = num.replace(/零千/g,'零');
+				num = num.replace(/零万/g,'万');
+				num = num.replace(/零亿/g,'亿');
+				index--;
+			}
+			num = clearfootZero(num);
+			numBigVal = document.getElementById('numBigVal');
+			numBigVal.value = num;
+			return console.log(num);
+		}
+	}
+</script>
+</html>

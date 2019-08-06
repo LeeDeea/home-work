@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+	<div id="">
+		<button onclick="btnjianshao('tangguo',1)">减少</button>
+		<span id="num">0</span>
+		<button onclick="btnadd('tangguo',1)">增加</button>tangguo
+	</div>
+	<div id="">
+		<button onclick="btnjianshao('shucai',2)">减少</button>
+		<span id="num">0</span>
+		<button onclick="btnadd('shucai',2)">增加</button>shucai
+	</div>
+	<span id="shopingName"></span>
+	<span id="sub">0</span>
+</body>
+<script>
+	var shopping=[];
+	var index = [];
+	function btnjianshao(name,num){
+      var nums = num-1;
+	  var dom = $('span:eq('+ nums +')').text() ;
+	  if(dom>0){
+	  	dom = Number(dom)-1;
+	  }
+	  $('span:eq('+ nums +')').text(dom)
+	  btnsub(name,dom);
+	}
+
+	function btnadd(name,num){
+	  var nums = num-1;
+	  var dom = $('span:eq('+ nums +')').text() ;
+	  dom = Number(dom)+1;
+	  $('span:eq('+ nums +')').text(dom)
+	  btnsub(name,dom);
+	}
+	function btnsub(name,num){
+		//数组总和
+		if(num=>0){
+			if(shopping.indexOf(name)!=-1){
+				index[shopping.indexOf(name)] = Number(num);
+			}else{
+				shopping.push(name);
+				index.push(Number(num))
+			}
+		}
+		console.clear();
+		console.log(shopping,index)
+		$('#sub').text(eval(index.join("+")));
+	}
+</script>
+</html>

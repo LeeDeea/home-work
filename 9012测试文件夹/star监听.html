@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>apply call bind</title>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+</head>
+<!-- 	<div class="start">start</div>
+	<div class="remove">remove</div> -->
+<!-- 	<div>*******************</div>		
+	<div class="con">
+		con
+		<div class="subA">A</div>
+		<div class="subB">B</div>
+	</div> -->
+<body>
+	<input id="model" type="text">
+	<p id="modelChange"></p>
+</body>
+<script>
+
+// 手写 数据双向绑定
+
+var user = {} 								// 方法指定的数据项
+var defaultName = "这是一条数据";				// 定义简单的一条测试数据
+var inputDom = document.getElementById("model")         // 获取input Dom结构
+var changeDom = document.getElementById("modelChange")  // 获取p标签 Dom结构
+
+inputDom.value = defaultName				// 修改两个DOM的文本内容为  "这是一条数据"
+changeDom.textContent = defaultName
+
+Object.defineProperty(user,"name",{			// 定义数据劫持对象
+	get:function () {
+		console.log("获取值")  // 获取值时调用，如：user.name
+		return defaultName;
+	},
+	set:function (value) {
+		console.log( "设置值" )     // 修改时调用，如：user.name = "桃子"
+		defaultName = value        //  将 "这是一条数据" 改为 "桃子"
+		inputDom.value = defaultName		// 将两个DOM的文本 改为新数据
+		changeDom.textContent =  defaultName
+	}
+})
+
+var theEnd = true;
+
+inputDom.addEventListener("keyup", function () {
+
+	if(theEnd)user.name = this.value
+
+}, false)
+
+model.addEventListener("compositionstart", function () {
+    theEnd = false;
+})
+model.addEventListener("compositionend", function () {
+    theEnd = true;
+})
+
+// console.log(user.name) 
+
+// user.name = "桃子"
+
+// console.log(user.name)
+
+
+
+// document.querySelector(".con").addEventListener("click",(e)=>{
+// 	console.log('con click')
+// 	// console.log(e.target.innerHTML)
+// })  
+// document.querySelector(".subA").addEventListener("click",(e)=>{
+// 	console.log('subA click')
+// 	// console.log(e.target)
+// 	e.stopPropagation();
+
+// })     
+
+
+
+
+
+// class Text {
+// 	constructor () {
+// 		this.count = 0;
+
+// 		console.log(this)
+
+// 		this.timer = null
+
+// 		let fn = this.startCount.bind(this)
+
+// 		document.querySelector(".start").addEventListener("click",fn)
+
+// 		document.querySelector(".remove").addEventListener("click",()=>{
+// 			clearInterval(this.timer)
+// 			document.querySelector('.start').removeEventListener("click",fn)
+// 		})
+// 	}
+// 	startCount () {
+// 		this.timer = setInterval(()=>{
+// 			// this.count++
+// 			console.log(this.count)
+// 		},1000)
+
+// 	}
+// }
+// const test = new Text()
+
+// console.log(3>2>1)
+// console.log(1<2<3)
+
+
+
+
+// 请在\*出添加适当的代码
+
+// function obj (name) {
+
+// 	// if(typeof name == 'string'){
+
+// 	// 	return {
+
+// 	// 		name : name
+
+// 	// 	}
+// 	// }
+
+// 	this.name = name || obj.prototype.name
+	
+// 	return {name:this.name}
+// }
+
+// obj.prototype.name = "name2"
+
+// var a = obj("name1")
+
+// var b = new obj
+
+// // a.name = nam1   b.name = name2
+
+// console.log(a.name,b.name)
+
+// console.log(obj())
+
+
+// ;(function () {
+// 	// var x 
+// 	try {
+// 		throw new Error()
+// 	} catch (x){
+// 		var x = 11
+// 		var y = 22 
+// 		console.log('catch',x);
+// 	}
+// 	console.log('x',x);
+// 	console.log('y',y);
+// })()
+
+
+
+
+
+</script>
+</html>
+
+

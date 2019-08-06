@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+   <link rel="shortcut icon" type="images/x-icon"  href="./favicon.ico">
+  <title>一张图理解什么是浮动</title>
+</head>
+<style>
+  .img-size{
+    
+    z-index: 999;
+    width: 100px;
+    height: 100px;  
+    background: red;
+  }
+  .img-size{
+
+  }
+}
+
+<style>
+  @media screen and (max-width: 675px){
+ /*书写最大宽度小于675px的选择器代码*/
+  }
+</style>
+
+<style>
+
+
+ li{
+  list-style-type: none;
+ }
+ .wrap{
+  border: 1px solid #666;
+  width: 400px;
+ }
+ .first-li{
+  float: left;
+  height: 40px;
+  border: 1px solid #333;
+
+ }
+ /*.secend-li{
+  height: 200px;
+ }*/
+
+ /*box1  修改dom父元素结尾元素之前增加div class clear的类名*/
+ .clear{
+  clear: both;
+ }
+
+/*box2   不增加dom 方便*/
+/*.wrap {
+  overflow:auto;
+}*/
+/*box3   利用：after伪元素和zoom对元素结尾进行清除浮动，方法类似第一种*/
+.wrap:after{
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height:0;
+}
+.wrap {
+  zoom:1;
+}
+/*box4  不建议使用：为父元素固定高度。 */
+
+</style>
+<!-- 1 浮动不会撑开父元素
+     2 浮动元素对除父元素外其他元素的排版存在影响
+ -->
+<body>
+  <!-- https://www.cnblogs.com/nxl0908/p/7245460.html -->
+  <!-- box1 -->
+<style>
+.wrap:after{
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height:0;
+}
+.wrap {
+  zoom:1;
+}
+</style>
+<div style="width: 200px;height:200px;background: blue;display: flex;
+    justify-content: center;
+    align-items: center;">
+  <div class="img-size"></div> 
+</div>
+
+
+<div id="box">
+  <ul class="wrap">
+    <li class="first-li">123</li>
+    <li class="secend-li">456</li>
+    <li>789</li>
+  </ul>
+  <ul class="wrap">
+    <li class="first">321</li>
+    <li class="secend">654</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+    <li>789</li>
+  </ul>
+</div> 
+ <!-- box2 -->
+<!-- <div id="box">
+  <ul class="wrap">
+    <li class="first-li">123</li>
+    <li class="secend-li">456</li>
+    <li>789</li>
+    <div class="clear"></div>
+  </ul>
+  <div></div>
+  <ul class="wrap">
+    <li class="first">321</li>
+    <li class="secend">654</li>
+    <li>789</li>
+  </ul>
+</div> -->
+<!-- box3 -->
+<!-- <div id="box">
+  <ul class="wrap">
+    <li class="first-li">123</li>
+    <li class="secend-li">456</li>
+    <li>789</li>
+    <div class="clear"></div>
+  </ul>
+  <div></div>
+  <ul class="wrap">
+    <li class="first">321</li>
+    <li class="secend">654</li>
+    <li>789</li>
+  </ul>
+</div> -->
+</body>
+<script scorde>
+// window.addEventListener('scroll', (e) => {
+//         // if (this.timer) {
+//         //   clearTimeout(this.timer)
+//         // }
+//         // this.timer = setTimeout(() => {
+//         var maxHeight = document.documentElement.clientHeight
+//         // var lisennerheight = window.pageYOffset
+//         var lisennerheight = document.documentElement.scrollTop
+//         var finsh = (lisennerheight / (maxHeight)) * 100
+//         finsh = Number(finsh.toString().slice(0, 6))
+//         // this.comWidth = finsh
+//         console.table(maxHeight, lisennerheight, finsh)
+//         // }, 18)
+//       })
+// var xiaoming = {
+//       name : "xiaoming",
+//       age : 18,
+//       like : ["eat","sleep","js"],
+//       gf : {
+//         name : "xiaohua",
+//         age : 16,
+//         bf : {
+//           name : "xiaohliyu",
+//           age : 15
+//         }
+//       }
+//     }
+
+//   function printobj(obj){
+//       //判断说明是数据类型
+//       if(typeof obj != "object"){//判断说明不是对象
+//         return obj
+//       }
+//       for(var k in obj){//遍历对象和数组
+//         console.log(k + "\t" + obj[k]);//在控制台输出
+//         if(typeof obj[k] == "object"){//判断说明如果是对象则递归
+//           printobj(obj[k])
+//         }
+//       }
+//       // return index
+//     }
+// printobj(xiaoming)
+
+// var arr = ["1",2,3,[4,5,6,[7,8,9,10,11,12]],[13,14]];
+// function product(){
+//   var newArr = []; // 利用闭包形成存储变量
+//   return function flatten(arr){
+//     for(var t of arr) { // 循环数组中每一项
+//       if(!Array.isArray(t)){
+//         newArr.push(t); // 判断是否数组中每一项是否为数组类型 
+//         // console.log(t);
+//       } else {
+//         newArr.concat(flatten(t)) // 遇非数组类型 对其进行再次拆分即递归
+//       }
+//     }
+//     return newArr
+//   }
+// }
+// var flattens = product();// 利用闭包存值
+// console.log(flattens(arr));
+
+// // setInterval(function (){
+// //   flattens = product();
+// //   console.log(flattens(arr))
+// // },2300);
+// for(let i =0;i<10;i++){
+//   flattens = product();
+//   console.log(flattens(arr))
+// }
+
+
+// var arr = [1,2,3,[4,5,6,[7,8,9,10,11,12]],[13,14]];
+
+// var newArr = []; // 利用闭包形成存储变量
+// function flatten(arr){
+//   for(var t of arr) { // 循环数组中每一项
+//     if(!Array.isArray(t)){
+//       newArr.push(t); // 判断是否数组中每一项是否为数组类型 
+//       // console.log(t);
+//     } else {
+//       newArr.concat(flatten(t)) // 遇非数组类型 对其进行再次拆分即递归
+//     }
+//   }
+//   return newArr
+// }
+// setInterval(function (){
+//   console.log(flatten(arr))
+//   newArr=[];
+// },1300);
+
+// let arrs = [1,2,3,[4,[5]],6];
+
+// // 将数组转化为字符串格式
+// let str = JSON.stringify(arrs); 
+
+// // 利用正则除去str中的中括号,利用字符串split方法以逗号拆分字符串为数组
+// let result = str.replace(/[\[\]]/g,'').split(','); 
+
+// // 该方法会导致数组中的数字变为字符串，如有数字格式要求，需进行循环Number();
+// console.log(typeof str,result) // ["1", "2", "3", "4", "5", "6"]
+/*-------------------------------*/ 
+// function flattenDeep(array){
+//   let arr = []; // 用于拷贝的空数组
+//   for(const item of array){ // 判断数字类型
+//     if(typeof item === 'number'){
+//       arr.push(item);
+//     }
+//     if(item instanceof Array){ // 判断是否为array类型
+//       // 核心，利用...扩展运算符 将数组中的数组打开再进行合并
+//       arr = [...arr,...flattenDeep(item)]
+//     }
+//   }
+//   return arr;
+// }
+// array=[1,[2,[3,[4]],5]];
+// console.log(flattenDeep(array));
+
+// $.ajax({
+//   ulr: ,
+//   type: ,
+//   dataType: ,
+//   data:{
+
+//   },
+//   success: function(){
+
+//   },
+//   error: function(){
+
+//   }
+// })
+
+
+
+
+// function flattenDeep (array) {
+//   while (array.some(item => Array.isArray(item))
+//     ) {
+//     array = Array.prototype.concat.apply([],array);
+//     // 为了方便发生了什么，我们可以打印一下
+//     // console.log(array);
+//     // (4) [1, 2, Array(2), 5]
+//     // (5) [1, 2, 3, Array(1), 5]
+//     // (5) [1, 2, 3, 4, 5]
+//     // (5) [1, 2, 3, 4, 5]
+//   }
+//   return array;
+// }
+// console.log(flattenDeep([1,[2,[3,[4]],5]]));
+
+
+// 北京明日时尚信息技术是 四号线人民大学 六点半
+
+
+
+
+// async function async1() {
+//   console.log('async1 start');   // 2
+//   await async2();
+//   console.log('async1 end');     // 6
+// }
+// async function async2() {
+//   console.log('async2');         // 3
+// }
+
+// console.log('script start');     // 1
+// setTimeout(()=>{
+//   console.log('setTimeOut');     // 8
+// },0)
+// async1();
+// new Promise(function(reslove){
+//   console.log('promise1');       // 4
+//   reslove();
+// }).then(function(){
+//   console.log('promise2');       // 7
+// })
+// console.log('script end')        // 5
+
+
+
+
+// var str1 = "ID,NAME,DESC,RANK\n100,TOM RUN,A RUNNING GAME FOR ALL KIDS,1\n101,MATCH JEWEL, AMATCH-3 GAME\n103,ANGRY ZOMBIE,SHOOT ZOOBIES AS MANY AS YOU CAN";
+// str = str1.split('\n');
+//   map
+// var newArr = str.map((num)=>num);
+//   forEach
+// var newArr = [];
+// str.forEach((num)=>newArr.push(num.split(',')));
+// console.log(newArr)
+      // function Transliteration (str) {
+      //   if (!str) {
+      //     return 'error:请输入正确字符串';
+      //   }
+      //   str = str.split('\n'); // 拆分
+      //   var newArr = str.map((num)=>num.split(','));
+      //   var arr = []; // 空数组存放最终结果
+      //   // 首行有多少条数据，进行多少次对象的建立
+      //   for (let i = 1; i < newArr[0].length; i++) { // 本题第一行为四个标题字段
+      //     var object = {};
+      //     for (let j = 0; j < newArr[0].length; j++) {  // 根据标题字段个数 循环赋值
+      //       // console.log(newArr[0][j],newArr[z][j])
+      //       object[newArr[0][j]] = newArr[i][j];
+      //       if (newArr[i][j] == undefined) {    // 如遇undefined 则置为空
+      //         object[newArr[0][j]] = '';
+      //       }
+      //     }
+      //     arr.push(object)
+      //   }
+      //   return arr;
+      // }
+      // var finish = Transliteration(str1);
+      // console.log(finish);
+
+// var twoSum = function(nums, target) {
+//     for(let i=0;i<nums.length;i++){
+//         for(let j=0;j<i;j++){
+//             if(nums[i]+nums[j]==target){
+//                 let arr = [];
+//                 arr.push(nums.indexOf(nums[j]));
+//                 arr.push(nums.indexOf(nums[i]));
+//                 return console.log(arr);
+//             }
+//         }
+//     }
+// };
+// twoSum([2,7,11,15],9)
+
+var str = "abcabcbb";
+
+var lengthOfLongestSubstring = function(str) {
+    str = str.split('');
+    let arr = [];
+    let indexArr = [];
+    let index = 0;
+    for(let i = 0; i < str.length; i++){
+        if(arr.indexOf(str[i]) == -1){
+            arr.push(str[i])
+            index++
+        }else {
+            indexArr.push(index);
+            index = 1;
+            arr = [];
+            arr.push(str[i])
+        }
+    }
+    var x = Math.max.apply(null, indexArr)
+    return console.log(indexArr, x);
+};
+
+lengthOfLongestSubstring(str);
+
+
+// let mySet = new Set();
+
+// mySet.add(1);               // Set(1) {1}
+// mySet.add(5);               // Set(2) {1, 5}
+// mySet.add(5);               // Set { 1, 5 }
+// mySet.add("some text");     // Set(3) {1, 5, "some text"}
+// var o = {a: 1, b: 2};
+// mySet.add(o);
+
+// mySet.add({a: 1, b: 2});    // o 指向的是不同的对象，所以没问题
+
+// mySet.has(1);               // true
+// mySet.has(3);               // false
+// mySet.has(5);               // true
+// mySet.has(Math.sqrt(25));   // true
+// mySet.has("Some Text".toLowerCase()); // true
+// mySet.has(o); // true
+
+// mySet.size;                 // 5
+
+// mySet.delete(5);            // true,  从set中移除5
+// mySet.has(5);               // false, 5已经被移除
+
+// mySet.size;                 // 4, 刚刚移除一个值
+// console.log(mySet);         // Set {1, "some text", Object {a: 1, b: 2}, Object {a: 1, b: 2}}
+
+
+
+// var dom = document.getElementById('box');
+// var str = '';
+// for (let k in dom) {
+//   str += dom[k] + '\n';
+// }
+// console.log(str)
+
+
+
+
+// var arr = ['1',1,2,3,3,4];
+
+// var obj = new Set(arr);
+
+// console.log(typeof obj);    // '1' 1 2 3 4
+
+
+
+
+
+
+</script>
+
+
+
+</html>

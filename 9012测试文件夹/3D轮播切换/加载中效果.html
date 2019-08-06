@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="author" content="水泡泡">
+  <meta name="description" content="加载等待特效">
+  <meta name="keywords" content="">
+  <title>加载中</title>
+  <style>
+    body,p{margin: 0;padding: 0;}
+    body{
+      background-color: #000;
+    }
+    .wrap{
+      position: relative;
+      margin: 50px auto;
+      width: 100px;
+      height: 100px;
+    }
+    .wrap p{
+      position: absolute;
+      -webkit-transform-origin: center bottom;
+              transform-origin: center bottom;
+      -webkit-animation:circle 2s cubic-bezier(.17,.89,.31,1.29) infinite;
+              animation:circle 2s cubic-bezier(.17,.89,.31,1.29) infinite;
+    }
+    .wrap p:nth-child(1){
+      width: 100px;
+      height: 50px;
+      left: 0;
+      top: 0;
+      border: 6px solid #df4343;
+      border-bottom: none;
+      border-radius:50% 50% 0 0/100% 100% 0 0;
+      -webkit-animation-delay: 250ms;
+              animation-delay: 250ms;
+    }
+    .wrap p:nth-child(2){
+      width: 80px;
+      height: 40px;
+      left: 10px;
+      top: 10px;
+      border: 6px solid #e5e545;
+      border-bottom: none;
+      border-radius:50% 50% 0 0/100% 100% 0 0;
+      -webkit-animation-delay: 200ms;
+              animation-delay: 200ms;
+    }
+    .wrap p:nth-child(3){
+      width: 60px;
+      height: 30px;
+      left: 20px;
+      top: 20px;
+      border: 6px solid #40d540;
+      border-bottom: none;
+      border-radius:50% 50% 0 0/100% 100% 0 0;
+      -webkit-animation-delay: 150ms;
+              animation-delay: 150ms;
+    }
+    .wrap p:nth-child(4){
+      width: 40px;
+      height: 20px;
+      left: 30px;
+      top: 30px;
+      border: 6px solid #3bc5c5;
+      border-bottom: none;
+      border-radius:50% 50% 0 0/100% 100% 0 0;
+      -webkit-animation-delay: 100ms;
+              animation-delay: 100ms;
+    }
+    .wrap p:nth-child(5){
+      width: 20px;
+      height: 10px;
+      left: 40px;
+      top: 40px;
+      border: 6px solid #4646e9;
+      border-bottom: none;
+      border-radius:50% 50% 0 0/100% 100% 0 0;
+      -webkit-animation-delay: 50ms;
+              animation-delay: 50ms;
+    }
+
+    @-webkit-keyframes circle{
+      0%,15%{
+        -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+      }
+      100%{
+        -webkit-transform:rotate(360deg);
+                transform:rotate(360deg);
+      }
+    }
+
+    @keyframes circle{
+      0%,15%{
+        -webkit-transform:rotate(0deg);
+                transform:rotate(0deg);
+      }
+      100%{
+        -webkit-transform:rotate(360deg);
+                transform:rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+</body>
+</html>
