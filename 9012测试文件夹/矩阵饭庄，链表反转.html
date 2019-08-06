@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div></div>
+</body>
+</html>
+<script type="text/javascript">
+	// var reverseList = function(head) { 
+ //    //递归方法
+	//     if( !head || !head.next) return head;
+	//     var p=head;
+	//     head=reverseList(p.next);
+	//     p.next.next=p;//由于之前p.next现在到了head的最后一个，所以p.next.next就完成和p和head交换顺序的任务，将p放到了head最后边。
+	//     p.next=null;
+	//     return head;
+	// };
+
+	function rotateMitrix(mitrix) {
+    // Start from here.
+	    var m = mitrix.length; 
+	    var n = mitrix[0].length;
+        var reverArr = new Array();
+	    for(let i = 0; i < n;i++){
+	    	reverArr[i] = [];
+	    }
+	    for (let i = 0; i < m; i++){
+	        for(let j = 0; j < n; j++){
+	            reverArr[j][m-1-i] = mitrix[i][j]
+	        }
+	    }
+	    return reverArr
+	}
+	var arr = [[1,2,3,4],
+               [5,6,7,8],
+               [9,10,11,12]]
+	console.log(rotateMitrix(arr))
+</script>
