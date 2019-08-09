@@ -13,6 +13,7 @@
 	var half = Math.floor(arr.length / 2);
 	var arrHalf = arr.splice(half, 1)[0];
 	arr.splice(half, 0,arrHalf)
+	
 	var quickSort = function(arr) {
 	　　if (arr.length <= 1) { return arr; }
 	　　var pivotIndex = Math.floor(arr.length / 2);
