@@ -29,38 +29,6 @@
                [9,10,11,12]]
 	console.log(rotateMitrix(arr))
 
-	// 链表翻转的两种方式  这种没看懂- -。不晓得为啥能运行
-	var reverseList1 = function(head) {
-	     var list = head;
-	     var p = list;
-	     var q = null;
-	    if(p == null)	
-	        return null;
-	    while(p.next !== null) {
-	        q = p.next;  //  将p.next 存起来
-	        p.next = q.next;
-	        q.next = list;
-	        list = q;     
-	    }
-	    return list;
-	};
-
-	// 这个也不晓得咋回事，为啥也不好使
-	var reverseList2 = function(head) {
-		if(!head || !head.next) return head;
-	    var list = head;
-	    var p = list;
-	    var q= null;
-	    
-	    while(p.next !== null) {
-	        q = p.next;
-	        p.next = q.next;
-	        q.next = list;
-	        list = q;     
-	    }
-	    return list;
-	};
-
 	// 这种while的很好理解。
 	function reverseList3(head) {
 		var pre = null
