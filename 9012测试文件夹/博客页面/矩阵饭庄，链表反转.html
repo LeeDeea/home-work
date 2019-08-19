@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div></div>
+</body>
+</html>
+<script type="text/javascript">
+	// 矩阵反转
+	function rotateMitrix(mitrix) {
+	    var m = mitrix.length; 
+	    var n = mitrix[0].length;
+        var reverArr = new Array();
+	    for(let i = 0; i < n;i++){
+	    	reverArr[i] = [];
+	    }
+	    for (let i = 0; i < m; i++){
+	        for(let j = 0; j < n; j++){
+	            reverArr[j][m-1-i] = mitrix[i][j]
+	        }
+	    }
+	    return reverArr
+	}
+	var arr = [[1,2,3,4],
+               [5,6,7,8],
+               [9,10,11,12]]
+	console.log(rotateMitrix(arr))
+
+	// 链表翻转的两种方式
+	var reverseList1 = function(head) {
+	     var list = head;
+	     var p = list;
+	     var q = null;
+	    if(p == null)	
+	        return null;
+	    while(p.next !== null) {
+	        q = p.next;  //  将p.next 存起来
+	        p.next = q.next;
+	        q.next = list;
+	        list = q;     
+	    }
+	    return list;
+	};
+
+	var reverseList2 = function(head) {
+		if(!head || !head.next) return head;
+	    var list = head;
+	    var p = list;
+	    var q= null;
+	    
+	    while(p.next !== null) {
+	        q = p.next;
+	        p.next = q.next;
+	        q.next = list;
+	        list = q;     
+	    }
+	    return list;
+	};
+
+	 
+	 
+</script>

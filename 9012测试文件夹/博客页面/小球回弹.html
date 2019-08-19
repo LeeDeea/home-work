@@ -1,108 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>小球回弹程序</title>
+  <meta charset="UTF-8">
+  <title>小球回弹程序</title>
 </head>
 <body>
-	
+  
 </body>
 </html>
 <script>
-	function map(){ /*创建小球运行的区域*/
-
-this.width = 500;
-this.height = 500;
-this.position = "relative";
-this.color = "red";
-this._map = null;
-this.show = function (){
-this._map = document.createElement('div');
-this._map.setAttribute("id","content");
-this._map.style.width = this.width + "px";
-this._map.style.height = this.height + "px";
-this._map.style.position = this.position;
-this._map.style.backgroundColor = this.color;
-document.getElementsByTagName('body')[0].appendChild(this._map);
-}
-}
-function ball(){
-this.width = 10;
-this.height = 10;
-this.position = "absolute";
-this.color = "blue";
-this.x = 0;
-this.y = 0;/*记录每次小球要走的位置，也可以用数组[0,0]存储*/
-this.div;
-this.arr = ["leftup","leftdown","rightup","rightdown"];
-this.dire = this.arr[Math.floor(Math.random()*4)];
-console.log(this.dire);
-this.show = function (){
-this.div = document.createElement("div");
-this.div.setAttribute("id","ball");
-this.div.style.width = this.width + "px";
-this.div.style.height = this.height + "px";
-this.div.style.borderRadius = 2 + "em";
-this.div.style.backgroundColor = this.color;
-this.div.style.position = this.position;
-this.x = Math.floor(Math.random()*500/this.width);
-this.y = Math.floor(Math.random()*500/this.height);
-this.div.style.left = this.x*this.width + "px";
-this.div.style.top = this.y*this.height + "px";
-document.getElementById('content').appendChild(this.div);
-}
-this.check = function (a,b){/*检测方法，检测碰壁，修改运动方向，即入射角等于反射角*/
-if(a >= 49 ){
-if(this.dire === this.arr[3]){
-this.dire = this.arr[1];
-}else if(this.dire === this.arr[2]){
-this.dire = this.arr[0];
-}
-}else if(b >= 49){
-if(this.dire === this.arr[3]){
-this.dire = this.arr[2];
-}else if(this.dire === this.arr[1]){
-this.dire = this.arr[0];
-}
-}else if(b <= 0){
-if(this.dire === this.arr[2]){
-this.dire = this.arr[3];
-}else if(this.dire === this.arr[0]){
-this.dire = this.arr[1];
-}
-}else if(a <= 0){
-if(this.dire === this.arr[1]){
-this.dire = this.arr[3];
-}else if(this.dire === this.arr[0]){
-this.dire = this.arr[2];
-}
-}
-}
-this.move = function (){
-switch(this.dire){
-case "leftdown" : this.x -= 0.1 ;
- this.y += 0.1 ;
- break;
-case "leftup" : this.x -= 0.1 ;
-this.y -= 0.1 ;
-break;
-case "rightdown" : this.x += 0.1 ;
-  this.y += 0.1 ;
-  break;
-case "rightup" : this.x += 0.1 ;
-this.y -= 0.1 ;
-break;
-} 
-this.div.style.left = this.x*this.width + "px";
-this.div.style.top = this.y*this.height + "px";
-this.check(this.x,this.y);
-}
-}
-var map = new map();
-map.show();
-var ball = new ball();
-ball.show();
-setInterval('ball.move()',14);
+  function map(){ /*创建小球运行的区域*/
+    this.width = 500;
+    this.height = 500;
+    this.position = "relative";
+    this.color = "red";
+    this._map = null;
+    this.show = function (){
+      this._map = document.createElement('div');
+      this._map.setAttribute("id","content");
+      this._map.style.width = this.width + "px";
+      this._map.style.height = this.height + "px";
+      this._map.style.position = this.position;
+      this._map.style.backgroundColor = this.color;
+      document.getElementsByTagName('body')[0].appendChild(this._map);
+    }
+  }
+  function ball(){
+    this.width = 10;
+    this.height = 10;
+    this.position = "absolute";
+    this.color = "blue";
+    this.x = 0;
+    this.y = 0;/*记录每次小球要走的位置，也可以用数组[0,0]存储*/
+    this.div;
+    this.arr = ["leftup","leftdown","rightup","rightdown"];
+    this.dire = this.arr[Math.floor(Math.random()*4)];
+    console.log(this.dire);
+    this.show = function (){
+      this.div = document.createElement("div");
+      this.div.setAttribute("id","ball");
+      this.div.style.width = this.width + "px";
+      this.div.style.height = this.height + "px";
+      this.div.style.borderRadius = 2 + "em";
+      this.div.style.backgroundColor = this.color;
+      this.div.style.position = this.position;
+      this.x = Math.floor(Math.random()*500/this.width);
+      this.y = Math.floor(Math.random()*500/this.height);
+      this.div.style.left = this.x*this.width + "px";
+      this.div.style.top = this.y*this.height + "px";
+      document.getElementById('content').appendChild(this.div);
+    }
+    this.check = function (a,b){/*检测方法，检测碰壁，修改运动方向，即入射角等于反射角*/
+      if(a >= 49 ){
+        if(this.dire === this.arr[3]){
+          this.dire = this.arr[1];
+        }else if(this.dire === this.arr[2]){
+          this.dire = this.arr[0];
+        }
+      }else if(b >= 49){
+        if(this.dire === this.arr[3]){
+          this.dire = this.arr[2];
+        }else if(this.dire === this.arr[1]){
+          this.dire = this.arr[0];
+        }
+      }else if(b <= 0){
+        if(this.dire === this.arr[2]){
+          this.dire = this.arr[3];
+        }else if(this.dire === this.arr[0]){
+          this.dire = this.arr[1];
+        }
+      }else if(a <= 0){
+        if(this.dire === this.arr[1]){
+          this.dire = this.arr[3];
+        }else if(this.dire === this.arr[0]){
+          this.dire = this.arr[2];
+        }
+      }
+    }
+    this.move = function (){
+    switch(this.dire){
+      case "leftdown" : this.x -= 0.1 ;
+        this.y += 0.1 ;
+        break;
+      case "leftup" : this.x -= 0.1 ;
+        this.y -= 0.1 ;
+        break;
+      case "rightdown" : this.x += 0.1 ;
+        this.y += 0.1 ;
+        break;
+      case "rightup" : this.x += 0.1 ;
+        this.y -= 0.1 ;
+        break;
+    } 
+    this.div.style.left = this.x*this.width + "px";
+    this.div.style.top = this.y*this.height + "px";
+    this.check(this.x,this.y);
+    }
+  }
+  var map = new map();
+  map.show();
+  var ball = new ball();
+  ball.show();
+  setInterval('ball.move()',14);
 
 
 </script>
