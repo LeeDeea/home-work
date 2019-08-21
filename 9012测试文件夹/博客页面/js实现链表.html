@@ -79,4 +79,56 @@
   console.log(lHead.print());// 12345
   lHead = lHead.revertNode();
   console.log(lHead.print());// 54321
+
+
+
+
+var Ajax = {
+  get: function (url, fn) {
+    // XMLHttpRequest对象用于请求后台数据
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', url, true) // 选择get方式获取数据
+    xhr.onreadystatechange = function (){
+      // 从服务器获取数据
+      if(xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)){
+        fn.call(this, xhr.responseText)
+      }
+    }
+    xhr.send()
+  },
+  post: function (url, data, fn) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('POST', url, true) // 选择get方式获取数据
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    // 添加http头部，发送信息至服务器时内容编码类型
+    xhr.onreadystatechange = function () {
+      if(xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)){
+        fn.call(this, xhr.responseText)
+      }
+    }
+    xhr.send(data)
+  }
+}
+
+
+
+Ajax.get('https://leedeea.github.io/Online-website/static/mock/primaryKnowledage.json',function (res){
+  alert(res)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
