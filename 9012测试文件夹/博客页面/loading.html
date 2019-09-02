@@ -1,82 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <title>Document</title>
 </head>
 <style>
-.loding{
-  width:200px;
-  height: 200px;
-  background: pink;
-  position: relative;
-  overflow :hidden;
-  border-radius :50%;
-  filter :24px;
-}
-.loding div{
-  width :100px;
-  height :100px;
-  background: red;
-  position: absolute;
-  border-radius :50%;
-  animation: move 2s linear infinite;
-}
-  
-@keyframes move{
-  0%, 100%{
-    transform: translate(0, 0);
+  .loadingBox {
+    position: fixed;
+    top: 0px;
+    left: 5px;
+    border-radius: 50%;
+    overflow: hidden;
   }
-  25%{
-    transform: translate(100%, 0);
-
+  .loading {
+    width: 200px;
+    height: 200px;
+    background: pink;
+    position: relative;
+    border-radius: 50%;
+    overflow:hidden;
   }
-  50%{
-    transform: translate(100%, 100%);
-
+  .loading div {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    border-radius: 50%;
+    animation: move 2s linear infinite;
+    -webkit-filter:blur(24px);
+    filter:blur(24px);
   }
-  75%{
-    transform:translate(0, 100%);
-
+  @keyframes move {
+    0%,100% {
+      background: red;
+      transform: translate(0,0)
+    }
+    25% {
+      background:green;
+      transform: translate(100%,0)
+    }
+    50% {
+      background:blue;
+      transform: translate(100%,100%)
+    }
+    75% {
+      background:yellow;
+      transform: translate(0,100%)
+    }
   }
-}
-.loding div:nth-child(1){
-background: red;
-  animation-delay: 0s;
-}
-  
-.loding div:nth-child(2){
-background: green;
-  animation-delay :-0.5s;
-}
-  
-.loding div:nth-child(3){
-background :yellow;
-  animation-delay :-1s;
-}
-  
-.loding div:nth-child(4){
- background: blue;
-  animation-delay: -1.5s;
-}
- 
-.loding:after{
-	display :block;
-  line-height:200px;
-  text-align: center;
-  content :'loading...';
-  font-size :23px;
-  color:black;
-}
-  
-
+  .loading div:nth-child(1){
+    background: red;
+    animation-delay: 0s;
+  }
+  .loading div:nth-child(2){
+    background:green;
+    animation-delay: -0.5s;
+  }
+  .loading div:nth-child(3){
+    background:blue;
+    animation-delay: -1.0s;
+  }
+  .loading div:nth-child(4){
+    background:yellow;
+    animation-delay: -1.5s;
+  }
 </style>
 <body>
-	<div class="loding">
-		<div></div>
-		<div></div>
-		<div></div>
-		<div></div>
-	</div>
+  <div class="loadingBox">
+    <div class="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
 </body>
 </html>
