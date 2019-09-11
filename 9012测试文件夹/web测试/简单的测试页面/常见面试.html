@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+
+  // var a = {
+  //   b : 1
+  // }
+  // console.log(a,(x => {x.b++})(a),a)
+
+
+
+  // var arr = [1,2,3,4]
+  // var arrb = arr;
+  // var newArr = arr.forEach(item => item+1)
+  // var newArr1 = arr.map(item => item)
+  // console.log(newArr)
+  // console.log(newArr1)
+  // console.log(arr === newArr1)
+  // console.log(arr === arrb)
+
+  var fruits = ['Apple', 'Banana'];
+  var a = fruits.forEach(function (item, index, array) {
+      console.log(item, index,array);
+  });
+  var b = fruits.map(function (index,arr) {
+      return arguments
+  });
+  console.log(a)
+  console.log(b)
+</script>
