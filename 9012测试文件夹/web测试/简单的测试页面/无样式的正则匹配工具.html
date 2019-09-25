@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则测试</title>
+</head>
+<style>
+	#textarea {
+		padding: 5px;
+		
+	}
+	#inputReg, #textareas {
+		background: #eee;
+		border:none;
+		padding: 5px;
+	}
+</style>
+<body>
+	<textarea name="" id="textarea" cols="30" rows="10">RegExp</textarea>
+	<input type="text" id="inputReg" value="^R" placeholder="输入表达式"></input>
+	<button id="matching" onclick="matching()">匹配</button>
+	<textarea name="" id="textareas" cols="30" rows="10"></textarea>
+</body>
+</html>
+<script>
+	function matching () {
+		document.getElementById('textareas').innerHTML = '';
+		// textarea 文本
+		var textareaDom = document.getElementById('textarea');
+		var textareaVal = textareaDom.value;
+		textareaVal = textareaVal.split("\n");
+		// console.log(textareaVal);
+		var inputDom = document.getElementById('inputReg')
+		var inputVal = inputDom.value;
+		var matching;
+		for(let index = 0; index <= textareaVal.length; index++){
+			if(matching = new RegExp(""+inputVal+"","g").test(textareaVal[index])){
+				document.getElementById('textareas').innerHTML += textareaVal[index] + '\n';
+			}
+		}
+	}
+
+</script>
