@@ -21,118 +21,118 @@
         name: '小黑',
         age: 15
     };
-    // // call 直接传参数
-    //     console.log('call:','\n');
-    //     // 基本用法，逗号分隔，引号传递单个参数
-    //     obj.myFun.call(obj2, 'call', '宝岛', '台湾')   
-    //     // 数组用法，逗号分隔，数组传递单个参数  
-    //     obj.myFun.call(obj2, ['call'], ['宝岛'], ['台湾']) 
-    // 
-    // // apply 数组形式传参
-    //     console.log('apply:','\n');
-    //     // 基本用法，逗号分隔 数组传递所有参数
-    //     obj.myFun.apply(obj2, ['apply', '北京', '上海'])
-    //     // 数组用法，逗号分隔，二维数组方式对同一个参数传递多个值 
-    //     obj.myFun.apply(obj2, [['apply'], ['北京'], ['上海']]) 
-    // 
-    // // bind 直接传参，可以通过数组形式对同一个参数传值 => 与call类似，但返回一个函数
-    //     console.log('bind:','\n');
-    //     // 基本用法，逗号分隔，引号传递单个参数 返回一个函数 需再次调用
-    //     obj.myFun.bind(obj2, 'bind', '深圳', '广州')()   
-    //     // 数组用法，逗号分隔，数组传递单个参数 返回一个函数 需再次调用 
-    //     obj.myFun.bind(obj2, ['bind'], ['云南', '贵阳'], ['齐齐哈尔', '黑龙江'])() //
+    // call 直接传参数
+        console.log('call:','\n');
+        // 基本用法，逗号分隔，引号传递单个参数
+        obj.myFun.call(obj2, 'call', '宝岛', '台湾')   
+        // 数组用法，逗号分隔，数组传递单个参数  
+        obj.myFun.call(obj2, ['call'], ['宝岛'], ['台湾']) 
+    
+    // apply 数组形式传参
+        console.log('apply:','\n');
+        // 基本用法，逗号分隔 数组传递所有参数
+        obj.myFun.apply(obj2, ['apply', '北京', '上海'])
+        // 数组用法，逗号分隔，二维数组方式对同一个参数传递多个值 
+        obj.myFun.apply(obj2, [['apply'], ['北京'], ['上海']]) 
+    
+    // bind 直接传参，可以通过数组形式对同一个参数传值 => 与call类似，但返回一个函数
+        console.log('bind:','\n');
+        // 基本用法，逗号分隔，引号传递单个参数 返回一个函数 需再次调用
+        obj.myFun.bind(obj2, 'bind', '深圳', '广州')()   
+        // 数组用法，逗号分隔，数组传递单个参数 返回一个函数 需再次调用 
+        obj.myFun.bind(obj2, ['bind'], ['云南', '贵阳'], ['齐齐哈尔', '黑龙江'])() //
 
 // 手写call函数
-Function.prototype.myCall = function (context) {
-	if(typeof context === 'undefined' || context ===null){
-		context = window
-	}
-	// context 要改变this的对象
-	context.fn = this  // this？指向muFun *
-	let args = [...arguments].splice(1) 
-	let result = context.fn(...args)
-	// context.fn 指向call之前的函数
-	delete context.fn
-	return result
-}
-// call小黑来自云南，年龄15，想去贵阳
-obj.myFun.myCall(obj2,'call','云南','贵阳','深圳')
+// Function.prototype.myCall = function (context) {
+// 	if(typeof context === 'undefined' || context ===null){
+// 		context = window
+// 	}
+// 	// context 要改变this的对象
+// 	context.fn = this  // this？指向muFun *
+// 	let args = [...arguments].splice(1) 
+// 	let result = context.fn(...args)
+// 	// context.fn 指向call之前的函数
+// 	delete context.fn
+// 	return result
+// }
+// // call小黑来自云南，年龄15，想去贵阳
+// obj.myFun.myCall(obj2,'call','云南','贵阳','深圳')
 
 // 手写apply函数
-Function.prototype.myApply = function (context){
-	if(context === 'undefined' || context === null){
-		context = window
-	}
-	context.fn = this
-	let args = arguments[1]
-	let result
-	if(args){
-		result = context.fn(...args)
-	} else {
-		result = context.fn();
-	}
-	delete context.fn
-	return result
-}
-// apply小黑来自云南，年龄15，想去贵阳
-obj.myFun.myApply(obj2,['apply','云南','贵阳','深圳'])
+// Function.prototype.myApply = function (context){
+// 	if(context === 'undefined' || context === null){
+// 		context = window
+// 	}
+// 	context.fn = this
+// 	let args = arguments[1]
+// 	let result
+// 	if(args){
+// 		result = context.fn(...args)
+// 	} else {
+// 		result = context.fn();
+// 	}
+// 	delete context.fn
+// 	return result
+// }
+// // apply小黑来自云南，年龄15，想去贵阳
+// obj.myFun.myApply(obj2,['apply','云南','贵阳','深圳'])
 
 // 手写bind
-Function.prototype.myBind = function (context) {
-	if(typeof this !== 'function'){
-		throw new TypeError('Error');
-	}
-	let _this = this
-	let args = [...arguments].splice(1)
-	return function F(){
-		if(this instanceof F){
-			return _this.apply(this, args.concat([...arguments]))
-		}
-		return _this.apply(context, args.concat([...arguments]))
-	}
-}
-// bind小黑来自云南，年龄15，想去贵阳
-obj.myFun.myBind(obj2,'bind','云南','贵阳','广州')()
+// Function.prototype.myBind = function (context) {
+// 	if(typeof this !== 'function'){
+// 		throw new TypeError('Error');
+// 	}
+// 	let _this = this
+// 	let args = [...arguments].splice(1)
+// 	return function F(){
+// 		if(this instanceof F){
+// 			return _this.apply(this, args.concat([...arguments]))
+// 		}
+// 		return _this.apply(context, args.concat([...arguments]))
+// 	}
+// }
+// // bind小黑来自云南，年龄15，想去贵阳
+// obj.myFun.myBind(obj2,'bind','云南','贵阳','广州')()
 
-var arr = new Array(1,2,3);
+// var arr = new Array(1,2,3);
 
 
 // 第一种
 
-Array.xisArray = function (arg){
+// Array.xisArray = function (arg){
 
-	return Object.prototype.toString.call(arg) === '[object Array]'
+// 	return Object.prototype.toString.call(arg) === '[object Array]'
 
-}
+// }
 
-console.log(Array.xisArray(arr))  // true
+// console.log(Array.xisArray(arr))  // true
 
 
 // 第二种
 
-Array.yisArray = function (arr){
+// Array.yisArray = function (arr){
 
-	return arr instanceof Array
-} 
+// 	return arr instanceof Array
+// } 
 
-console.log(Array.yisArray(arr))  // true
+// console.log(Array.yisArray(arr))  // true
 
 
 // 第三种
 
-function myIsArray(obj){
-	if(obj && typeof obj === 'object'){
-		let str = JSON.stringify(obj)
-		let first = str[0]
-		let last = str[str.length - 1]
-		if(first === '[' && last === ']'){
-			return true
-		}
-		return false
-	}
-	return false
-}
-console.log(myIsArray(arr))   // true
+// function myIsArray(obj){
+// 	if(obj && typeof obj === 'object'){
+// 		let str = JSON.stringify(obj)
+// 		let first = str[0]
+// 		let last = str[str.length - 1]
+// 		if(first === '[' && last === ']'){
+// 			return true
+// 		}
+// 		return false
+// 	}
+// 	return false
+// }
+// console.log(myIsArray(arr))   // true
 
 
 // var a = [1,2,3,[4,5]]
@@ -163,44 +163,44 @@ console.log(myIsArray(arr))   // true
 
 // 深拷贝
 
-var deepCopy1 = function (source) {
-    var result = {};            
-    for(var key in source) {                
-        if(typeof source[key] === 'object') {
-            result[key] = deepCopy(source[key])
-        } else {
-            result[key] = source[key]
-        }
-    }   
-        return result;
-}
+// var deepCopy1 = function (source) {
+//     var result = {};            
+//     for(var key in source) {                
+//         if(typeof source[key] === 'object') {
+//             result[key] = deepCopy(source[key])
+//         } else {
+//             result[key] = source[key]
+//         }
+//     }   
+//         return result;
+// }
 
-var deepCopy = function (obj){
-	var finish = typeof obj === 'object' ? {} : []
-	for (key in obj) {
-		if (typeof obj[key] === 'object') {
-			finish[key] = deepCopy1(obj[key])
-		} else {
-			finish[key] = obj[key]
-		}
-	}
-	return finish
-}
+// var deepCopy = function (obj){
+// 	var finish = typeof obj === 'object' ? {} : []
+// 	for (key in obj) {
+// 		if (typeof obj[key] === 'object') {
+// 			finish[key] = deepCopy1(obj[key])
+// 		} else {
+// 			finish[key] = obj[key]
+// 		}
+// 	}
+// 	return finish
+// }
 // var deepCopyOne = deepCopy(arr)
 
 // var deepCopyOne = JSON.parse(JSON.stringify(arr))
 
 
-var arr = [1, 2, 3, [4, 5]]
+// var arr = [1, 2, 3, [4, 5]]
 
 // $.extend(是否深拷贝， target目标， 原对象)
-var deepCopyOne = $.extend(true, [], arr)
+// var deepCopyOne = $.extend(true, [], arr)
 
-arr[0] = 2
+// arr[0] = 2
 
-arr[3][0] = 6
+// arr[3][0] = 6
 
-console.log(arr, deepCopyOne)
+// console.log(arr, deepCopyOne)
 
 
 
@@ -233,19 +233,19 @@ console.log(arr, deepCopyOne)
 // console.log(format(12312321))
 
 
-Function.prototype.mybind = function (context){
-	if(typeof this !== 'function'){
-		throw new TypeError('Error')
-	}
-	let _this = this;
-	let args = [...argumnets].splice(1)
-	return function f(){
-		if(this instanceof F){
-			return _this.apply(this,args.concat([...arguments]))
-		}
-		return _this.apply(context,args.concat([...arguments]))
-	}
-}
+// Function.prototype.mybind = function (context){
+// 	if(typeof this !== 'function'){
+// 		throw new TypeError('Error')
+// 	}
+// 	let _this = this;
+// 	let args = [...argumnets].splice(1)
+// 	return function f(){
+// 		if(this instanceof F){
+// 			return _this.apply(this,args.concat([...arguments]))
+// 		}
+// 		return _this.apply(context,args.concat([...arguments]))
+// 	}
+// }
 
 
 

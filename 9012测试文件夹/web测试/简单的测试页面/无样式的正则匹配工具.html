@@ -5,9 +5,12 @@
 	<title>正则测试</title>
 </head>
 <style>
+	body {
+		background:#E2E2E2;
+	}
 	#textarea {
 		padding: 5px;
-		
+
 	}
 	#inputReg, #textareas {
 		background: #eee;
@@ -33,11 +36,23 @@
 		var inputDom = document.getElementById('inputReg')
 		var inputVal = inputDom.value;
 		var matching;
-		for(let index = 0; index <= textareaVal.length; index++){
-			if(matching = new RegExp(""+inputVal+"","g").test(textareaVal[index])){
-				document.getElementById('textareas').innerHTML += textareaVal[index] + '\n';
+		for(let index = 0; index < textareaVal.length; index++){
+			if(textareaVal[index] != ''){
+					if(matching = new RegExp(""+inputVal+"","g").test(textareaVal[index])){
+					document.getElementById('textareas').innerHTML += textareaVal[index] + '\n';
+					console.log(textareaVal[index])
+				}
 			}
 		}
 	}
-
+    // Function.prototype.myapply = function (con) {
+    // 	if(typeof con ==='undefined' || con === null){
+    // 		con = window;
+    // 	}
+    // 	con.fn = this;
+    // 	let args = [...arguments].splice(1);
+    // 	let result = con.fn(...args)
+    // 	delete con.fn;
+    // 	return result;
+    // }
 </script>
