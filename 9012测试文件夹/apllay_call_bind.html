@@ -8,7 +8,8 @@
 <body>
 </body>
 <script>
-	debugger
+
+	// debugger
     var name = '小王', age = 17;
     var obj = {
         name: '小张',
@@ -43,20 +44,20 @@
         obj.myFun.bind(obj2, ['bind'], ['云南', '贵阳'], ['齐齐哈尔', '黑龙江'])() //
 
 // 手写call函数
-// Function.prototype.myCall = function (context) {
-// 	if(typeof context === 'undefined' || context ===null){
-// 		context = window
-// 	}
-// 	// context 要改变this的对象
-// 	context.fn = this  // this？指向muFun *
-// 	let args = [...arguments].splice(1) 
-// 	let result = context.fn(...args)
-// 	// context.fn 指向call之前的函数
-// 	delete context.fn
-// 	return result
-// }
-// // call小黑来自云南，年龄15，想去贵阳
-// obj.myFun.myCall(obj2,'call','云南','贵阳','深圳')
+Function.prototype.myCall = function (context) {
+	if(typeof context === 'undefined' || context ===null){
+		context = window
+	}
+	// context 要改变this的对象
+	context.fn = this  // this？指向muFun *
+	let args = [...arguments].splice(1) 
+	let result = context.fn(...args)
+	// context.fn 指向call之前的函数
+	delete context.fn
+	return result
+}
+// call小黑来自云南，年龄15，想去贵阳
+obj.myFun.myCall(obj2,'call','云南','贵阳','深圳')
 
 // 手写apply函数
 // Function.prototype.myApply = function (context){
@@ -246,8 +247,6 @@
 // 		return _this.apply(context,args.concat([...arguments]))
 // 	}
 // }
-
-
 
 
 
