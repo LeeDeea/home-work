@@ -19,7 +19,7 @@
       left: 0px;
       top: 0px;
       z-index: -1;
-      background: #ffffff;
+      background: #222;
     }
 
     span {
@@ -81,7 +81,7 @@
   //2.创建粒子
   function createParticle(x, y) {
     cxt.save();//保存路径
-    cxt.fillStyle = 'rgba(255, 255, 255, 0)';//填充样式
+    cxt.fillStyle = 'rgba(111, 222, 255, 0)';//填充样式
     cxt.beginPath();//开始路径
     cxt.arc(x, y, 1.2, 0, Math.PI * 2, false);//画圆方法
     cxt.closePath();//结束路径
@@ -107,12 +107,11 @@
       }
     }
   }
-  setInterval(draw, 1000 / 40);
   //4.粒子连线
   function drawLine(x1, y1, x2, y2) {
     let Cxt = oCanvas.getContext('2d');
     let color = Cxt.createLinearGradient(x1, y1, x2, y2);
-    color.addColorStop(0, '#CCC');
+    color.addColorStop(0, '#CCC222');
     color.addColorStop(0.5, 'white');
     color.addColorStop(1, '#F2F2F2');
     Cxt.save();
@@ -124,7 +123,7 @@
     Cxt.stroke();
     Cxt.restore();
   }
-
+  setInterval(draw, 1000 / 40);
 
 
   /*
