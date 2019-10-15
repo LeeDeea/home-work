@@ -1,0 +1,97 @@
+{
+  "editor.mouseWheelZoom": true,
+  "background.enabled": true,
+  "background.useDefault": false,
+  "background.customImages": [
+    "D:/test/u=1660745396,2288481924&fm=26&gp=0.jpg",
+    "D:/test/u=1656155423,3967392133&fm=11&gp=0.jpg",
+    "D:/test/fab8d7039245d6888a8f78ddaac27d1ed31b24fb.jpg"
+  ],
+  "background.useFront": true,
+  "background.style": {
+    "content": "''",
+    "pointer-events": "none",
+    "position": "absolute", //图片位置
+    "width": "100%",
+    "height": "100%",
+    "z-index": "99999",
+    "background.repeat": "no-repeat",
+    "background-size": "100% 100%", //图片大小
+    "opacity": 0.0852 //透明度
+  },
+  "files.autoSave": "afterDelay",
+  "window.zoomLevel": 0,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "editor.tabSize": 2,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.options": {
+    "extensions": [".js", ".vue"]
+  },
+  "eslint.validate": [
+    "javascript",
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    "html",
+    "vue"
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "vue": "html",
+    "vue-html": "html"
+  },
+  "git.confirmSync": false,
+  "window.zoomLevel": 0,
+  "editor.renderWhitespace": "boundary",
+  "editor.cursorBlinking": "smooth",
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.fontFamily": "'Consolas','Droid Sans Mono' , monospace, 'Droid Sans Fallback'",
+  "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+  "editor.codeLens": true,
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  //保存时eslint自动修复错误
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.format.defaultFormatter.js": "vscode-typescript",
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "force-aligned"
+    }
+  },
+  "prettier.eslintIntegration": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "stylusSupremacy.insertColons": false, // 是否插入冒号
+  "stylusSupremacy.insertSemicolons": false, // 是否插入分好
+  "stylusSupremacy.insertBraces": false, // 是否插入大括号
+  "stylusSupremacy.insertNewLineAroundImports": false, // import之后是否换行
+  "stylusSupremacy.insertNewLineAroundBlocks": false,
+  "workbench.colorTheme": "Monokai",
+  "workbench.iconTheme": "vscode-icons",
+  "explorer.confirmDragAndDrop": false
+}
